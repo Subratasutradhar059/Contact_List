@@ -10,49 +10,55 @@ const Register = ({navigation}) => {
   const onChange = ({name, value}) => {
     setForm({...form,[name]: value});
     if(value !== ""){
-      setError(prev=>{
-        return {...prev,[name]:null}
-
+      if(name=== "password"){
+        if(value.length<6){
+          setError((prev)=>{
+            return {...prev,[name]:"This field need min 6 char"}    
+          })
+        }else{
+          setError(prev=>{
+            return {...prev,[name]:null}    
+          })  
+        }
+      }else{
+        setError(prev=>{
+          return {...prev,[name]:null}  
+        })
+      }     
+    }else{
+      setError((prev)=>{
+        return {...prev,[name]:"This field is required"}
       })
-
     }
   };
 
   const onSubmit = () => {
-
     console.log("first",form)
-
     if(!form.userName){
       setError(prev=>{
         return {...prev,userName:"Please add a userName"}
-
       })
     }
     if(!form.firstName){
       setError(prev=>{
         return {...prev,firstName:"Please add a firstName"}
-
       })
     }
     if(!form.lastName){
       setError(prev=>{
         return {...prev,lastName:"Please add a lastName"}
-
       })
     }
     if(!form.email){
       setError(prev=>{
         return {...prev,email:"Please add a Email"}
-
       })
     }
     if(!form.password){
       setError(prev=>{
         return {...prev,password:"Please add a Password"}
-
       })
     }
-
   };
 
   return (

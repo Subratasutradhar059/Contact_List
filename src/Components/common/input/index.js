@@ -28,13 +28,13 @@ const Input = ({
   };
 
   const getBorderColor = () => {
+    if (error) {
+      return Color.danger;
+    }
     if (focused) {
       return Color.primary;
     }
-
-    if (error) {
-      return Color.danger;
-    } else {
+    else {
       Color.gray;
     }
   };
